@@ -4,7 +4,7 @@
 #
 Name     : vkd3d
 Version  : 1c7df3f
-Release  : 2
+Release  : 3
 URL      : https://github.com/d3d12/vkd3d/archive/1c7df3f.tar.gz
 Source0  : https://github.com/d3d12/vkd3d/archive/1c7df3f.tar.gz
 Summary  : The vkd3d 3D Graphics Library
@@ -33,6 +33,7 @@ BuildRequires : pkgconfig(xcb-keysyms)
 BuildRequires : sed
 BuildRequires : util-linux
 BuildRequires : wine-bin
+Patch1: backport-vulkan-range.patch
 
 %description
 =============================
@@ -88,6 +89,8 @@ license components for the vkd3d package.
 
 %prep
 %setup -q -n vkd3d-1c7df3f
+cd %{_builddir}/vkd3d-1c7df3f
+%patch1 -p1
 pushd ..
 cp -a vkd3d-1c7df3f build32
 popd
@@ -97,14 +100,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1572233215
+export SOURCE_DATE_EPOCH=1589209621
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %autogen --disable-static --with-spirv-tools \
 --enable-tests
@@ -130,7 +133,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1572233215
+export SOURCE_DATE_EPOCH=1589209621
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vkd3d
 cp %{_builddir}/vkd3d-1c7df3f/COPYING %{buildroot}/usr/share/package-licenses/vkd3d/b02df56a2b74d40e71f032ae77634b125a51f1a5

@@ -1,0 +1,37 @@
+From b3f5556bf3210a11c534f1d740c91f804480da81 Mon Sep 17 00:00:00 2001
+From: Philip Rebohle <philip.rebohle@tu-dortmund.de>
+Date: Mon, 4 May 2020 22:39:19 +0200
+Subject: [PATCH] vkd3d: Do not use VK_PIPELINE_BIND_POINT_RANGE_SIZE.
+
+These constants were removed in Vulkan 1.2.140 headers.
+
+Signed-off-by: Philip Rebohle <philip.rebohle@tu-dortmund.de>
+---
+ libs/vkd3d/vkd3d_private.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/libs/vkd3d/vkd3d_private.h b/libs/vkd3d/vkd3d_private.h
+index df44447..53a081a 100644
+--- a/libs/vkd3d/vkd3d_private.h
++++ b/libs/vkd3d/vkd3d_private.h
+@@ -47,6 +47,8 @@
+ 
+ #define VKD3D_MAX_SHADER_STAGES     5u
+ 
++#define VKD3D_PIPELINE_BIND_POINT_COUNT 2u
++
+ struct d3d12_command_list;
+ struct d3d12_device;
+ 
+@@ -625,7 +627,7 @@ struct d3d12_command_list
+     VkFramebuffer current_framebuffer;
+     VkPipeline current_pipeline;
+     VkRenderPass current_render_pass;
+-    struct vkd3d_pipeline_bindings pipeline_bindings[VK_PIPELINE_BIND_POINT_RANGE_SIZE];
++    struct vkd3d_pipeline_bindings pipeline_bindings[VKD3D_PIPELINE_BIND_POINT_COUNT];
+ 
+     struct d3d12_pipeline_state *state;
+ 
+-- 
+2.26.2
+
