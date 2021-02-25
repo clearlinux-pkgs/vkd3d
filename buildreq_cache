@@ -1,5 +1,5 @@
-1c7df3f
+1.2
 Vulkan-Headers-dev
-Vulkan-Loader-dev
+doxygen
+perl
 pkg-config
-util-linux

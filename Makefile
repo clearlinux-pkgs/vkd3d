@@ -1,5 +1,5 @@
 PKG_NAME := vkd3d
-URL = https://github.com/d3d12/vkd3d/archive/1c7df3f.tar.gz
+URL = https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
