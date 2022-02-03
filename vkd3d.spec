@@ -6,7 +6,7 @@
 #
 Name     : vkd3d
 Version  : 1.2
-Release  : 4
+Release  : 5
 URL      : https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz
 Source0  : https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz
 Source1  : https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz.sign
@@ -16,7 +16,6 @@ License  : LGPL-2.1
 Requires: vkd3d-bin = %{version}-%{release}
 Requires: vkd3d-lib = %{version}-%{release}
 Requires: vkd3d-license = %{version}-%{release}
-BuildRequires : SPIRV-Headers-dev
 BuildRequires : SPIRV-Tools
 BuildRequires : SPIRV-Tools-dev
 BuildRequires : Vulkan-Headers-dev
@@ -28,6 +27,7 @@ BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
+BuildRequires : llvm-dev
 BuildRequires : perl
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(32SPIRV-Tools-shared)
@@ -114,21 +114,21 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1614218028
+export SOURCE_DATE_EPOCH=1643904248
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %configure --disable-static --with-spirv-tools \
 --enable-tests
 make  %{?_smp_mflags}
 
 pushd ../build32/
-export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+export PKG_CONFIG_PATH="/usr/lib32/pkgconfig:/usr/share/pkgconfig"
 export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
@@ -147,7 +147,7 @@ cd ../build32;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1614218028
+export SOURCE_DATE_EPOCH=1643904248
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vkd3d
 cp %{_builddir}/vkd3d-1.2/COPYING %{buildroot}/usr/share/package-licenses/vkd3d/7bbfc42d0400635e55fbf87df8e2df6b76c783e0
@@ -157,6 +157,12 @@ pushd ../build32/
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
 then
 pushd %{buildroot}/usr/lib32/pkgconfig
+for i in *.pc ; do ln -s $i 32$i ; done
+popd
+fi
+if [ -d %{buildroot}/usr/share/pkgconfig ]
+then
+pushd %{buildroot}/usr/share/pkgconfig
 for i in *.pc ; do ln -s $i 32$i ; done
 popd
 fi

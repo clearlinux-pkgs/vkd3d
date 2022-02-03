@@ -2,7 +2,7 @@
 # picked up automatically. One name per line, no whitespace.
 Vulkan-Loader-dev
 Vulkan-Loader-dev32
-SPIRV-Headers-dev
+llvm-dev
 SPIRV-Tools
 SPIRV-Tools-dev
 wine-bin

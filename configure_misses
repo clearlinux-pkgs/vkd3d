@@ -1,35 +1,35 @@
-Configure miss: i686-w64-mingw32-gcc
-Configure miss: i586-w64-mingw32-gcc
-Configure miss: i486-w64-mingw32-gcc
-Configure miss: i386-w64-mingw32-gcc
-Configure miss: x86_64-w64-mingw32-gcc
 Configure miss: amd64-w64-mingw32-gcc
-Configure miss: vulkan/spirv.h usability
-Configure miss: vulkan/spirv.h presence
-Configure miss: vulkan/spirv.h
-Configure miss: vulkan/GLSL.std.450.h usability
-Configure miss: vulkan/GLSL.std.450.h presence
-Configure miss: vulkan/GLSL.std.450.h
-Configure miss: x86_64-generic-linux-gnu-otool
-Configure miss: otool
-Configure miss: x86_64-generic-linux-gnu-readelf
+Configure miss: amd64-w64-mingw32-gcc
+Configure miss: i386-w64-mingw32-gcc
+Configure miss: i386-w64-mingw32-gcc
+Configure miss: i486-w64-mingw32-gcc
+Configure miss: i486-w64-mingw32-gcc
+Configure miss: i586-w64-mingw32-gcc
+Configure miss: i586-w64-mingw32-gcc
 Configure miss: i686-generic-linux-gnu-doxygen
-Configure miss: i686-generic-linux-gnu-perl
-Configure miss: i686-generic-linux-gnu-pdflatex
-Configure miss: i686-generic-linux-gnu-makeindex
 Configure miss: i686-generic-linux-gnu-egrep
-Configure miss: i686-w64-mingw32-gcc
-Configure miss: i586-w64-mingw32-gcc
-Configure miss: i486-w64-mingw32-gcc
-Configure miss: i386-w64-mingw32-gcc
-Configure miss: x86_64-w64-mingw32-gcc
-Configure miss: amd64-w64-mingw32-gcc
-Configure miss: vulkan/spirv.h usability
-Configure miss: vulkan/spirv.h presence
-Configure miss: vulkan/spirv.h
-Configure miss: vulkan/GLSL.std.450.h usability
-Configure miss: vulkan/GLSL.std.450.h presence
-Configure miss: vulkan/GLSL.std.450.h
+Configure miss: i686-generic-linux-gnu-makeindex
 Configure miss: i686-generic-linux-gnu-otool
-Configure miss: otool
+Configure miss: i686-generic-linux-gnu-pdflatex
+Configure miss: i686-generic-linux-gnu-perl
 Configure miss: i686-generic-linux-gnu-readelf
+Configure miss: i686-w64-mingw32-gcc
+Configure miss: i686-w64-mingw32-gcc
+Configure miss: otool
+Configure miss: otool
+Configure miss: vulkan/GLSL.std.450.h
+Configure miss: vulkan/GLSL.std.450.h
+Configure miss: vulkan/GLSL.std.450.h presence
+Configure miss: vulkan/GLSL.std.450.h presence
+Configure miss: vulkan/GLSL.std.450.h usability
+Configure miss: vulkan/GLSL.std.450.h usability
+Configure miss: vulkan/spirv.h
+Configure miss: vulkan/spirv.h
+Configure miss: vulkan/spirv.h presence
+Configure miss: vulkan/spirv.h presence
+Configure miss: vulkan/spirv.h usability
+Configure miss: vulkan/spirv.h usability
+Configure miss: x86_64-generic-linux-gnu-otool
+Configure miss: x86_64-generic-linux-gnu-readelf
+Configure miss: x86_64-w64-mingw32-gcc
+Configure miss: x86_64-w64-mingw32-gcc
