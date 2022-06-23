@@ -1,5 +1,8 @@
-1.2
+1.4
 Vulkan-Headers-dev
+bison
 doxygen
+flex
+ncurses-dev
 perl
 pkg-config

@@ -6,3 +6,5 @@ llvm-dev
 SPIRV-Tools
 SPIRV-Tools-dev
 wine-bin
+ncurses-dev
+ncurses-dev32
