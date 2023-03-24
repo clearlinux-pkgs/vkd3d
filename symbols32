@@ -2,6 +2,7 @@ libvkd3d-shader.so.1:VKD3D_1_0
 libvkd3d-shader.so.1:vkd3d_shader_compile
 libvkd3d-shader.so.1:vkd3d_shader_convert_root_signature
 libvkd3d-shader.so.1:vkd3d_shader_find_signature_element
+libvkd3d-shader.so.1:vkd3d_shader_free_dxbc
 libvkd3d-shader.so.1:vkd3d_shader_free_messages
 libvkd3d-shader.so.1:vkd3d_shader_free_root_signature
 libvkd3d-shader.so.1:vkd3d_shader_free_scan_descriptor_info
@@ -10,10 +11,12 @@ libvkd3d-shader.so.1:vkd3d_shader_free_shader_signature
 libvkd3d-shader.so.1:vkd3d_shader_get_supported_source_types
 libvkd3d-shader.so.1:vkd3d_shader_get_supported_target_types
 libvkd3d-shader.so.1:vkd3d_shader_get_version
+libvkd3d-shader.so.1:vkd3d_shader_parse_dxbc
 libvkd3d-shader.so.1:vkd3d_shader_parse_input_signature
 libvkd3d-shader.so.1:vkd3d_shader_parse_root_signature
 libvkd3d-shader.so.1:vkd3d_shader_preprocess
 libvkd3d-shader.so.1:vkd3d_shader_scan
+libvkd3d-shader.so.1:vkd3d_shader_serialize_dxbc
 libvkd3d-shader.so.1:vkd3d_shader_serialize_root_signature
 libvkd3d-shader.so.1:vkd3d_shader_set_log_callback
 libvkd3d-utils.so.1:D3D12CreateDeviceVKD3D
