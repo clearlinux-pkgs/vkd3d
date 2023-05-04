@@ -1,11 +1,16 @@
 Configure miss: amd64-w64-mingw32-gcc
 Configure miss: amd64-w64-mingw32-gcc
+Configure miss: amd64-w64-mingw32-gcc
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: i386-w64-mingw32-gcc
 Configure miss: i386-w64-mingw32-gcc
+Configure miss: i386-w64-mingw32-gcc
 Configure miss: i486-w64-mingw32-gcc
 Configure miss: i486-w64-mingw32-gcc
+Configure miss: i486-w64-mingw32-gcc
+Configure miss: i586-w64-mingw32-gcc
 Configure miss: i586-w64-mingw32-gcc
 Configure miss: i586-w64-mingw32-gcc
 Configure miss: i686-generic-linux-gnu-doxygen
@@ -18,14 +23,22 @@ Configure miss: i686-generic-linux-gnu-perl
 Configure miss: i686-generic-linux-gnu-readelf
 Configure miss: i686-w64-mingw32-gcc
 Configure miss: i686-w64-mingw32-gcc
+Configure miss: i686-w64-mingw32-gcc
+Configure miss: otool
 Configure miss: otool
 Configure miss: otool
 Configure miss: vulkan/GLSL.std.450.h
 Configure miss: vulkan/GLSL.std.450.h
+Configure miss: vulkan/GLSL.std.450.h
+Configure miss: vulkan/spirv.h
 Configure miss: vulkan/spirv.h
 Configure miss: vulkan/spirv.h
 Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: x86_64-generic-linux-gnu-otool
 Configure miss: x86_64-generic-linux-gnu-otool
 Configure miss: x86_64-generic-linux-gnu-readelf
+Configure miss: x86_64-generic-linux-gnu-readelf
+Configure miss: x86_64-w64-mingw32-gcc
 Configure miss: x86_64-w64-mingw32-gcc
 Configure miss: x86_64-w64-mingw32-gcc

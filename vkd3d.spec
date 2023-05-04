@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xCEFAC8EAAF17519D (julliard@winehq.org)
 #
 Name     : vkd3d
-Version  : 1.7
-Release  : 9
-URL      : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.tar.xz
-Source0  : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.tar.xz
-Source1  : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.tar.xz.sign
+Version  : 1.7.1
+Release  : 10
+URL      : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.1.tar.xz
+Source0  : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.1.tar.xz
+Source1  : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.1.tar.xz.sign
 Summary  : The vkd3d 3D Graphics Library
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -23,6 +23,7 @@ BuildRequires : Vulkan-Headers-dev
 BuildRequires : Vulkan-Loader-dev
 BuildRequires : Vulkan-Loader-dev32
 BuildRequires : bison
+BuildRequires : buildreq-configure
 BuildRequires : doxygen
 BuildRequires : flex
 BuildRequires : gcc-dev32
@@ -116,10 +117,13 @@ license components for the vkd3d package.
 
 
 %prep
-%setup -q -n vkd3d-1.7
-cd %{_builddir}/vkd3d-1.7
+%setup -q -n vkd3d-1.7.1
+cd %{_builddir}/vkd3d-1.7.1
 pushd ..
-cp -a vkd3d-1.7 build32
+cp -a vkd3d-1.7.1 build32
+popd
+pushd ..
+cp -a vkd3d-1.7.1 buildavx2
 popd
 
 %build
@@ -127,15 +131,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679677028
+export SOURCE_DATE_EPOCH=1683219251
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure --disable-static --with-spirv-tools \
 --enable-tests
 make  %{?_smp_mflags}
@@ -150,8 +154,19 @@ export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
 --enable-tests   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}
 popd
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%configure --disable-static --with-spirv-tools \
+--enable-tests
+make  %{?_smp_mflags}
+popd
 %install
-export SOURCE_DATE_EPOCH=1679677028
+export SOURCE_DATE_EPOCH=1683219251
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vkd3d
 cp %{_builddir}/vkd3d-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/vkd3d/01a6b4bf79aca9b556822601186afab86e8c4fbf || :
@@ -170,17 +185,25 @@ for i in *.pc ; do ln -s $i 32$i ; done
 popd
 fi
 popd
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/vkd3d-compiler
 /usr/bin/vkd3d-compiler
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libvkd3d-shader.so
+/V3/usr/lib64/libvkd3d-utils.so
+/V3/usr/lib64/libvkd3d.so
 /usr/include/vkd3d/vkd3d.h
 /usr/include/vkd3d/vkd3d_d3d12.h
 /usr/include/vkd3d/vkd3d_d3d12sdklayers.h
@@ -215,6 +238,12 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libvkd3d-shader.so.1
+/V3/usr/lib64/libvkd3d-shader.so.1.5.0
+/V3/usr/lib64/libvkd3d-utils.so.1
+/V3/usr/lib64/libvkd3d-utils.so.1.3.3
+/V3/usr/lib64/libvkd3d.so.1
+/V3/usr/lib64/libvkd3d.so.1.7.0
 /usr/lib64/libvkd3d-shader.so.1
 /usr/lib64/libvkd3d-shader.so.1.5.0
 /usr/lib64/libvkd3d-utils.so.1
