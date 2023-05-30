@@ -7,7 +7,7 @@
 #
 Name     : vkd3d
 Version  : 1.7.1
-Release  : 10
+Release  : 11
 URL      : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.1.tar.xz
 Source0  : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.1.tar.xz
 Source1  : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.1.tar.xz.sign
@@ -131,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683219251
+export SOURCE_DATE_EPOCH=1685491065
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -166,7 +166,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1683219251
+export SOURCE_DATE_EPOCH=1685491065
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vkd3d
 cp %{_builddir}/vkd3d-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/vkd3d/01a6b4bf79aca9b556822601186afab86e8c4fbf || :
@@ -201,9 +201,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libvkd3d-shader.so
-/V3/usr/lib64/libvkd3d-utils.so
-/V3/usr/lib64/libvkd3d.so
 /usr/include/vkd3d/vkd3d.h
 /usr/include/vkd3d/vkd3d_d3d12.h
 /usr/include/vkd3d/vkd3d_d3d12sdklayers.h
@@ -238,11 +235,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libvkd3d-shader.so.1
 /V3/usr/lib64/libvkd3d-shader.so.1.5.0
-/V3/usr/lib64/libvkd3d-utils.so.1
 /V3/usr/lib64/libvkd3d-utils.so.1.3.3
-/V3/usr/lib64/libvkd3d.so.1
 /V3/usr/lib64/libvkd3d.so.1.7.0
 /usr/lib64/libvkd3d-shader.so.1
 /usr/lib64/libvkd3d-shader.so.1.5.0
