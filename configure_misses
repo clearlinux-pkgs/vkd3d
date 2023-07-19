@@ -1,3 +1,6 @@
+Configure miss: __atomic_exchange_n
+Configure miss: __atomic_exchange_n
+Configure miss: __atomic_exchange_n
 Configure miss: amd64-w64-mingw32-gcc
 Configure miss: amd64-w64-mingw32-gcc
 Configure miss: amd64-w64-mingw32-gcc
@@ -16,7 +19,6 @@ Configure miss: i586-w64-mingw32-gcc
 Configure miss: i686-generic-linux-gnu-doxygen
 Configure miss: i686-generic-linux-gnu-egrep
 Configure miss: i686-generic-linux-gnu-file
-Configure miss: i686-generic-linux-gnu-makeindex
 Configure miss: i686-generic-linux-gnu-otool
 Configure miss: i686-generic-linux-gnu-pdflatex
 Configure miss: i686-generic-linux-gnu-perl

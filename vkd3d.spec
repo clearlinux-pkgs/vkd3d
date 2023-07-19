@@ -6,17 +6,18 @@
 # Source0 file verified with key 0xCEFAC8EAAF17519D (julliard@winehq.org)
 #
 Name     : vkd3d
-Version  : 1.7.1
-Release  : 11
-URL      : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.1.tar.xz
-Source0  : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.1.tar.xz
-Source1  : https://dl.winehq.org/vkd3d/source/vkd3d-1.7.1.tar.xz.sign
+Version  : 1.8
+Release  : 12
+URL      : https://dl.winehq.org/vkd3d/source/vkd3d-1.8.tar.xz
+Source0  : https://dl.winehq.org/vkd3d/source/vkd3d-1.8.tar.xz
+Source1  : https://dl.winehq.org/vkd3d/source/vkd3d-1.8.tar.xz.sign
 Summary  : The vkd3d 3D Graphics Library
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: vkd3d-bin = %{version}-%{release}
 Requires: vkd3d-lib = %{version}-%{release}
 Requires: vkd3d-license = %{version}-%{release}
+BuildRequires : SPIRV-Headers-dev
 BuildRequires : SPIRV-Tools
 BuildRequires : SPIRV-Tools-dev
 BuildRequires : Vulkan-Headers-dev
@@ -117,13 +118,13 @@ license components for the vkd3d package.
 
 
 %prep
-%setup -q -n vkd3d-1.7.1
-cd %{_builddir}/vkd3d-1.7.1
+%setup -q -n vkd3d-1.8
+cd %{_builddir}/vkd3d-1.8
 pushd ..
-cp -a vkd3d-1.7.1 build32
+cp -a vkd3d-1.8 build32
 popd
 pushd ..
-cp -a vkd3d-1.7.1 buildavx2
+cp -a vkd3d-1.8 buildavx2
 popd
 
 %build
@@ -131,7 +132,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685491065
+export SOURCE_DATE_EPOCH=1689804221
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -166,7 +167,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1685491065
+export SOURCE_DATE_EPOCH=1689804221
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vkd3d
 cp %{_builddir}/vkd3d-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/vkd3d/01a6b4bf79aca9b556822601186afab86e8c4fbf || :
@@ -235,24 +236,24 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libvkd3d-shader.so.1.5.0
-/V3/usr/lib64/libvkd3d-utils.so.1.3.3
-/V3/usr/lib64/libvkd3d.so.1.7.0
+/V3/usr/lib64/libvkd3d-shader.so.1.6.0
+/V3/usr/lib64/libvkd3d-utils.so.1.3.4
+/V3/usr/lib64/libvkd3d.so.1.8.0
 /usr/lib64/libvkd3d-shader.so.1
-/usr/lib64/libvkd3d-shader.so.1.5.0
+/usr/lib64/libvkd3d-shader.so.1.6.0
 /usr/lib64/libvkd3d-utils.so.1
-/usr/lib64/libvkd3d-utils.so.1.3.3
+/usr/lib64/libvkd3d-utils.so.1.3.4
 /usr/lib64/libvkd3d.so.1
-/usr/lib64/libvkd3d.so.1.7.0
+/usr/lib64/libvkd3d.so.1.8.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libvkd3d-shader.so.1
-/usr/lib32/libvkd3d-shader.so.1.5.0
+/usr/lib32/libvkd3d-shader.so.1.6.0
 /usr/lib32/libvkd3d-utils.so.1
-/usr/lib32/libvkd3d-utils.so.1.3.3
+/usr/lib32/libvkd3d-utils.so.1.3.4
 /usr/lib32/libvkd3d.so.1
-/usr/lib32/libvkd3d.so.1.7.0
+/usr/lib32/libvkd3d.so.1.8.0
 
 %files license
 %defattr(0644,root,root,0755)
