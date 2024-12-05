@@ -1,3 +1,9 @@
+Configure miss: -ldxcompiler
+Configure miss: -ldxcompiler
+Configure miss: -ldxcompiler
+Configure miss: Metal
+Configure miss: Metal
+Configure miss: Metal
 Configure miss: amd64-w64-mingw32-gcc
 Configure miss: amd64-w64-mingw32-gcc
 Configure miss: amd64-w64-mingw32-gcc
@@ -21,6 +27,7 @@ Configure miss: i686-generic-linux-gnu-otool
 Configure miss: i686-generic-linux-gnu-pdflatex
 Configure miss: i686-generic-linux-gnu-perl
 Configure miss: i686-generic-linux-gnu-readelf
+Configure miss: i686-generic-linux-gnu-widl
 Configure miss: i686-w64-mingw32-gcc
 Configure miss: i686-w64-mingw32-gcc
 Configure miss: i686-w64-mingw32-gcc
@@ -39,6 +46,8 @@ Configure miss: x86_64-generic-linux-gnu-otool
 Configure miss: x86_64-generic-linux-gnu-otool
 Configure miss: x86_64-generic-linux-gnu-readelf
 Configure miss: x86_64-generic-linux-gnu-readelf
+Configure miss: x86_64-generic-linux-gnu-widl
+Configure miss: x86_64-generic-linux-gnu-widl
 Configure miss: x86_64-w64-mingw32-gcc
 Configure miss: x86_64-w64-mingw32-gcc
 Configure miss: x86_64-w64-mingw32-gcc
